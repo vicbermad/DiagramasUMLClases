@@ -1,21 +1,40 @@
 @startuml
 skinparam groupInheritance 2
 
-class Member
+class Member {
+    e-mail : String
+}
 
 Class BoardMember
 
-Class Event
+Class Event {
+    description : String
+    date : Date
+    assign(l : Location) : void
+}
 
-Class Conference
+Class Conference {
+    Integer : max_attendees
+}
 
 Class BoardMeeting
 
-Class Location
+Class Location{
+    description : String
+    address : String
+}
 
-Class Person
+Class Person{
+    e-mail : String
+}
 
-Class AAUOC
+Class AAUOC {
+    newLocation(I : Location) : void
+    newEvent(e : Event) : void
+    newPerson(p : Person) : void
+    informEvent(e : Event) : void
+    register(m : Member,e : Event) : void
+}
 
 Event <|-- Conference
 Event <|-- BoardMeeting
