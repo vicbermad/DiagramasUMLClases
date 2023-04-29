@@ -2,38 +2,31 @@
 skinparam groupInheritance 2
 
 class Member {
-    e-mail : String
+
 }
 
 Class BoardMember
 
 Class Event {
-    description : String
-    date : Date
-    assign(l : Location) : void
+
 }
 
 Class Conference {
-    Integer : max_attendees
+
 }
 
 Class BoardMeeting
 
 Class Location{
-    description : String
-    address : String
+
 }
 
 Class Person{
-    e-mail : String
+
 }
 
 Class AAUOC {
-    newLocation(I : Location) : void
-    newEvent(e : Event) : void
-    newPerson(p : Person) : void
-    informEvent(e : Event) : void
-    register(m : Member,e : Event) : void
+
 }
 
 Event <|-- Conference
@@ -42,13 +35,13 @@ Event <|-- BoardMeeting
 Person <|-- Member
 Member <|-- BoardMember
 
-AAUOC o-- Person
-AAUOC o-- Location
-AAUOC o-- Event
+AAUOC o-- "0..*" Person
+AAUOC o-- "0..*" Location
+AAUOC o-- "0..*"Event
 
-Location -- Event
-Event -- Member
+Location "1" -- "0..*" Event : isLocatedIn
+Event "0..*" -- "0..*" Member : attendsTo
 
-BoardMeeting -- BoardMember
-Conference -- Person
+BoardMeeting "0..*" -- "0..*" BoardMember : attendsTo
+Conference "0..*" -- "0..*" Person : attendsTo
 @enduml
